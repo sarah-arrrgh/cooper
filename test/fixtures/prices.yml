@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  price_per_unit: 9.99
+  price_list_id: 
+  product_id: 
+
+two:
+  price_per_unit: 9.99
+  price_list_id: 
+  product_id: 
