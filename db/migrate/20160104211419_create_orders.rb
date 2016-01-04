@@ -5,7 +5,7 @@ class CreateOrders < ActiveRecord::Migration
       t.date :order_date
       t.references :product, index: true, foreign_key: true
       t.references :member, index: true, foreign_key: true
-      t.integer :status
+      t.int :status
 
       t.timestamps null: false
     end
