@@ -2,10 +2,14 @@
 
 one:
   qty: 9.99
-  member_id: 
+  order_date: 2016-01-04
   product_id: 
+  member_id: 
+  status: 
 
 two:
   qty: 9.99
-  member_id: 
+  order_date: 2016-01-04
   product_id: 
+  member_id: 
+  status: 
