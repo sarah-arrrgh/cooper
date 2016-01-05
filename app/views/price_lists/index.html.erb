@@ -1,11 +1,11 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Price Lists</h1>
+<h1>Listing Price Lists for <%= @supplier.name %></h1>
 
 <table>
   <thead>
     <tr>
-      <th>Effectivedate</th>
+      <th>Effective date</th>
       <th>Supplier</th>
       <th colspan="3"></th>
     </tr>
@@ -14,11 +14,9 @@
   <tbody>
     <% @price_lists.each do |price_list| %>
       <tr>
-        <td><%= price_list.EffectiveDate %></td>
-        <td><%= price_list.supplier %></td>
-        <td><%= link_to 'Show', price_list %></td>
-        <td><%= link_to 'Edit', edit_price_list_path(price_list) %></td>
-        <td><%= link_to 'Destroy', price_list, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= price_list.EffectiveDate %></td>       
+        <td><%= link_to 'Edit', edit_supplier_price_list_path(@supplier,price_list) %></td>
+        <td><%= link_to 'Destroy', supplier_price_list_path(@supplier,price_list), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -26,4 +24,4 @@
 
 <br>
 
-<%= link_to 'New Price list', new_price_list_path %>
+<%= link_to 'New Price list', new_supplier_price_list_path %>

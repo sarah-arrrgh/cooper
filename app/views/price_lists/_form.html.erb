@@ -1,5 +1,7 @@
-<%= form_for(@price_list) do |f| %>
+
+<%= form_for [@price_list.supplier, @price_list] do |f| %>
   <% if @price_list.errors.any? %>
+  <%= puts @price_list %>}
     <div id="error_explanation">
       <h2><%= pluralize(@price_list.errors.count, "error") %> prohibited this price_list from being saved:</h2>
 
@@ -12,12 +14,12 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :EffectiveDate %><br>
+    <%= f.label :"Effective Date" %><br>
     <%= f.date_select :EffectiveDate %>
   </div>
   <div class="field">
-    <%= f.label :supplier_id %><br>
-    <%= f.text_field :supplier_id %>
+    <%= f.label :"Load CSV file"%><br>
+    <%= file_field_tag :file %>
   </div>
   <div class="actions">
     <%= f.submit %>
