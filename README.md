@@ -7,6 +7,7 @@ petone co-op app
 ## hackweek mvp
 * [trello board](https://trello.com/b/5C3H57TI/coop-mvp)
 * [site map](https://drive.google.com/file/d/0BzzPde2Zi5HDbVp1T2VIT1N2MFk/view?usp=sharing)
+* [concept map](https://drive.google.com/file/d/0BzzPde2Zi5HDanllMzc4blFraTQ/view?usp=sharing)
 
 ### back-end resources
 * [current spreadsheet](https://docs.google.com/spreadsheets/d/1D9rz6NT2h0dbnLdekZOh5yrjYQlDPNLlIXjDGGTwugI/edit?usp=sharing)
