@@ -52,7 +52,7 @@ class PriceList < ActiveRecord::Base
   end
   def create_product_price(product_hash)
     price = product_hash.delete("price_per_unit"){ |el| "#{el} not found" }     
-    product = self.supplier.products.find_by(product_code:product_hash["product_code"])
+    product = self.supplier.products.find_by_product_code(product_hash["product_code"])
     if !product 
       # add product
       product = self.products.new(product_hash)          
