@@ -14,8 +14,7 @@ class PriceListsController < ApplicationController
   end
 
   # GET /price_lists/new
-  def new    
-    p @supplier
+  def new        
     @price_list = @supplier.price_lists.new
   end
 
@@ -25,12 +24,12 @@ class PriceListsController < ApplicationController
 
   # POST /price_lists
   # POST /price_lists.json
-  def create
-    @price_list = @supplier.price_lists.new(price_list_params)
-
+  def create    
+    @price_list = @supplier.price_lists.new(price_list_params)    
+    @price_list.import(params[:price_list][:file])
     respond_to do |format|
       if @price_list.save
-        format.html { redirect_to [@supplier,@price_list], notice: 'Price list was successfully created.' }
+        format.html { redirect_to supplier_price_lists_path(@supplier), notice: 'Price list was successfully created.' }
         format.json { render :show, status: :created, location: @price_list }
       else
         format.html { render :new }
@@ -44,7 +43,7 @@ class PriceListsController < ApplicationController
   def update
     respond_to do |format|
       if @price_list.update(price_list_params)
-        format.html { redirect_to @price_list, notice: 'Price list was successfully updated.' }
+        format.html { redirect_to supplier_price_lists_path(@supplier), notice: 'Price list was successfully updated.' }
         format.json { render :show, status: :ok, location: @price_list }
       else
         format.html { render :edit }
@@ -58,7 +57,7 @@ class PriceListsController < ApplicationController
   def destroy
     @price_list.destroy
     respond_to do |format|
-      format.html { redirect_to price_lists_url, notice: 'Price list was successfully destroyed.' }
+      format.html { redirect_to supplier_price_lists_path(@supplier), notice: 'Price list was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -66,9 +65,7 @@ class PriceListsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_supplier
-      @supplier = Supplier.find(params[:supplier_id])
-      puts 'here'
-      puts @supplier
+      @supplier = Supplier.find(params[:supplier_id])      
     end
     def set_price_list
       @price_list = @supplier.price_lists.find(params[:id])
