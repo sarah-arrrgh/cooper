@@ -12,7 +12,7 @@ class PriceList < ActiveRecord::Base
     CSV.foreach(file.path, headers: true) do |row|
       line_hash = row.to_hash
       if (!parse_ceres_string(row, currentSection, currentCategory, currentBrand))
-        create_product_price(parse_ceres_product(line_hash))
+        create_product_price(parse_ceres_product(line_hash)) if parse_ceres_product(line_hash)
       end
     end    
   end
@@ -34,11 +34,11 @@ class PriceList < ActiveRecord::Base
   end
   def parse_ceres_product(line_hash)
     if (line_hash["Ceres Product Code"])&&(line_hash["Product Description"])
-      return {:product_code=>line_hash["Ceres Product Code"],
-            :description=>line_hash["Product Description"],
-            :unit=>parse_unit(line_hash["Unit Size"]),
-            :qty_outer=>parse_qty(line_hash["Quantity"]),
-            :price_per_unit=>parse_qty(line_hash["Unit Trade Price"])}   
+      return {"product_code"=>line_hash["Ceres Product Code"],
+            "description"=>line_hash["Product Description"],
+            "unit"=>parse_unit(line_hash["Unit Size"]),
+            "qty_outer"=>parse_qty(line_hash["Quantity"]),
+            "price_per_unit"=>parse_qty(line_hash["Unit Trade Price"])}   
     end
     return nil
   end
@@ -51,11 +51,13 @@ class PriceList < ActiveRecord::Base
     return qty.gsub(/[a-zA-Z]|\s|\$/, '').to_f
   end
   def create_product_price(product_hash)
-    if !self.products.find_by(product_code:product_hash[:product_code])
+    price = product_hash.delete("price_per_unit"){ |el| "#{el} not found" }     
+    product = self.supplier.products.find_by(product_code:product_hash["product_code"])
+    if !product 
       # add product
-      
-    else
-      # add price
+      product = self.products.new(product_hash)          
     end
+    # add price
+    product.prices.new(price_per_unit:price)
   end
 end
