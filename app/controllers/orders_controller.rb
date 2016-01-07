@@ -25,8 +25,8 @@ class OrdersController < ApplicationController
   # POST /orders
   # POST /orders.json
   def create
-    puts params
-    @order = Order.new(order_params)
+    
+    @order = current_member.orders.new(order_params)
 
     respond_to do |format|
       if @order.save

@@ -1,7 +1,7 @@
 class PriceListsController < ApplicationController
   before_action :set_supplier
   before_action :set_price_list, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, only: [:create, :update, :destroy]
+  before_action :authenticate_member!, only: [:edit, :create, :update, :destroy]]
 
   # GET /price_lists
   # GET /price_lists.json
@@ -15,8 +15,13 @@ class PriceListsController < ApplicationController
   end
 
   # GET /price_lists/new
-  def new        
-    @price_list = @supplier.price_lists.new
+  def new  
+    if current_member.admin?
+      @price_list = @supplier.price_lists.new
+    else
+      redirect_to products_path, alert: "You have to be admin to create price list"
+    end   
+    
   end
 
   # GET /price_lists/1/edit
