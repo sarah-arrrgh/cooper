@@ -21,7 +21,8 @@
         <td><%= product.description %></td>
         <td><%= product.unit %></td>
         <td><%= product.qty_outer %></td>
-        <td><%= product.qty_min %></td>
+        <td><%= product.qty_min %></td>          
+        <%= render 'form_order', locals: {product:product.id} %>
         <td><%= link_to 'Show', product %></td>
         <td><%= link_to 'Edit', edit_product_path(product) %></td>
         <td><%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %></td>
