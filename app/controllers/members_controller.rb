@@ -1,5 +1,7 @@
 class MembersController < ApplicationController
   before_action :set_member, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_member!, only: [:edit, :update, :destroy]
+  before_action :check_rights, only: [:show, :new, :edit, :update, :destroy]
 
   # GET /members
   # GET /members.json
@@ -70,5 +72,13 @@ class MembersController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def member_params
       params.require(:member).permit(:number, :join_date, :contact_number, :email)
+    end
+
+    def check_rights
+      
+      if !current_member.admin?
+         redirect_to products_url, alert: 'You have to be admin to edit other users'
+      end
+
     end
 end
