@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160107040409) do
+ActiveRecord::Schema.define(version: 20160112065626) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,6 +31,15 @@ ActiveRecord::Schema.define(version: 20160107040409) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "finalisings", force: :cascade do |t|
+    t.date     "final_date"
+    t.integer  "coop_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "finalisings", ["coop_id"], name: "index_finalisings_on_coop_id", using: :btree
 
   create_table "members", force: :cascade do |t|
     t.integer  "number"
@@ -103,9 +112,12 @@ ActiveRecord::Schema.define(version: 20160107040409) do
     t.string   "unit"
     t.decimal  "qty_outer"
     t.decimal  "qty_min"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.integer  "finalising_id"
   end
+
+  add_index "products", ["finalising_id"], name: "index_products_on_finalising_id", using: :btree
 
   create_table "suppliers", force: :cascade do |t|
     t.string   "name"
@@ -115,6 +127,7 @@ ActiveRecord::Schema.define(version: 20160107040409) do
 
   add_foreign_key "coop_suppliers", "coops"
   add_foreign_key "coop_suppliers", "suppliers"
+  add_foreign_key "finalisings", "coops"
   add_foreign_key "members_coops", "coops"
   add_foreign_key "members_coops", "members"
   add_foreign_key "orders", "members"
@@ -122,4 +135,5 @@ ActiveRecord::Schema.define(version: 20160107040409) do
   add_foreign_key "price_lists", "suppliers"
   add_foreign_key "prices", "price_lists"
   add_foreign_key "prices", "products"
+  add_foreign_key "products", "finalisings"
 end

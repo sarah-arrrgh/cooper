@@ -1,0 +1,25 @@
+<%= form_for(@finalising) do |f| %>
+  <% if @finalising.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@finalising.errors.count, "error") %> prohibited this finalising from being saved:</h2>
+
+      <ul>
+      <% @finalising.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :final_date %><br>
+    <%= f.date_select :final_date %>
+  </div>
+  <div class="field">
+    <%= f.label :coop_id %><br>
+    <%= f.text_field :coop_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :finalisings
   devise_for :members
   root 'products#index'
   resources :orders

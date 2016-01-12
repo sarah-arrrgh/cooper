@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Final date:</strong>
+  <%= @finalising.final_date %>
+</p>
+
+<p>
+  <strong>Coop:</strong>
+  <%= @finalising.coop %>
+</p>
+
+<%= link_to 'Edit', edit_finalising_path(@finalising) %> |
+<%= link_to 'Back', finalisings_path %>

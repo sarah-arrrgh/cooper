@@ -1,7 +1,7 @@
 class PriceListsController < ApplicationController
   before_action :set_supplier
   before_action :set_price_list, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_member!, only: [:edit, :create, :update, :destroy]]
+  before_action :authenticate_member!, only: [:edit, :create, :update, :destroy]
 
   # GET /price_lists
   # GET /price_lists.json

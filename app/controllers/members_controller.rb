@@ -74,11 +74,5 @@ class MembersController < ApplicationController
       params.require(:member).permit(:number, :join_date, :contact_number, :email)
     end
 
-    def check_rights
-      
-      if !current_member.admin?
-         redirect_to products_url, alert: 'You have to be admin to edit other users'
-      end
-
-    end
+    
 end

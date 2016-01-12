@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Finalisings</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Final date</th>
+      <th>Coop</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @finalisings.each do |finalising| %>
+      <tr>
+        <td><%= finalising.final_date %></td>
+        <td><%= finalising.coop %></td>
+        <td><%= link_to 'Show', finalising %></td>
+        <td><%= link_to 'Edit', edit_finalising_path(finalising) %></td>
+        <td><%= link_to 'Destroy', finalising, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Finalising', new_finalising_path %>

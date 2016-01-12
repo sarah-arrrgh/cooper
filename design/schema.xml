@@ -37,7 +37,7 @@
     <type label="SET" length="1" sql="SET" quote=""/>
     <type label="Bit" length="0" sql="bit" quote=""/>
   </group>
-</datatypes><table x="129" y="198" name="Members">
+</datatypes><table x="65" y="264" name="Members">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -68,7 +68,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="282" y="109" name="Members_coop">
+<table x="289" y="80" name="Members_coop">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -84,7 +84,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="493" y="223" name="COOP">
+<table x="486" y="124" name="COOP">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -183,7 +183,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="230" y="392" name="ActualOrders">
+<table x="308" y="389" name="Order">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -203,6 +203,25 @@
 <default>NULL</default></row>
 <row name="OrderStatus" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="id_FinalisingDates" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="FinalisingDates" row="id" />
+</row>
+<key type="PRIMARY" name="">
+<part>id</part>
+</key>
+</table>
+<table x="308" y="210" name="FinalisingDates">
+<row name="id" null="1" autoincrement="1">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="id_COOP" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="COOP" row="id" />
+</row>
+<row name="FinalisingDate" null="1" autoincrement="0">
+<datatype>DATE</datatype>
 <default>NULL</default></row>
 <key type="PRIMARY" name="">
 <part>id</part>
