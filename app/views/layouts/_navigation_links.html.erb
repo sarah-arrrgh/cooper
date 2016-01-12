@@ -1,8 +1,7 @@
 <%# add navigation links to this file %>
+<li><%= link_to 'Coops', coops_path %></li>
 <% if current_member && current_member.admin? %>
   <li><%= link_to 'Members', members_path %></li>
   
-  <li><%= link_to 'Suppliers', new_supplier_path %></li>
-<% else %>
-
+  <li><%= link_to 'Suppliers', suppliers_path %></li>
 <% end %>

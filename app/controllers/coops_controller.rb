@@ -1,6 +1,7 @@
 class CoopsController < ApplicationController
   before_action :set_coop, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_member!, only: [:edit, :create, :update, :destroy]
+  before_action :check_rights, only: [:new, :edit, :update, :destroy]
   # GET /coops
   # GET /coops.json
   def index

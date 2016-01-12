@@ -1,6 +1,7 @@
 class PricesController < ApplicationController
   before_action :set_price, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_member!
+  before_action :check_rights, only: [:new, :edit, :update, :destroy]
 
   # GET /prices
   # GET /prices.json

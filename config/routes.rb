@@ -1,9 +1,10 @@
-Rails.application.routes.draw do
-  resources :finalisings
+Rails.application.routes.draw do  
   devise_for :members
   root 'products#index'
   resources :orders
-  resources :coops
+  resources :coops do
+    resources :finalisings
+  end
   resources :members
   resources :prices  
   resources :suppliers do
