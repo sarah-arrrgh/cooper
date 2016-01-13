@@ -1,5 +1,7 @@
 class FinalisingsController < ApplicationController
   before_action :set_finalising, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_member!, only: [:edit, :update, :destroy]
+  before_action :check_rights, only: [:new, :edit, :update, :destroy]
 
   # GET /finalisings
   # GET /finalisings.json

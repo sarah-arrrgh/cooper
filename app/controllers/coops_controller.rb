@@ -41,8 +41,17 @@ class CoopsController < ApplicationController
   # PATCH/PUT /coops/1
   # PATCH/PUT /coops/1.json
   def update
-    respond_to do |format|
-      if @coop.update(coop_params)
+    respond_to do |format|      
+      if params[:coop][:member_id] && (current_member.id == params[:coop][:member_id].to_i)
+        current_member.coops << @coop
+        #TODO refactor create, update render functions
+        if current_member.save 
+          format.html { redirect_to @coop, notice: 'You have joined this COOP' }
+          format.json { render :show, status: :ok, location: @coop }
+        else
+
+        end
+      elsif @coop.update(coop_params)
         format.html { redirect_to @coop, notice: 'Coop was successfully updated.' }
         format.json { render :show, status: :ok, location: @coop }
       else

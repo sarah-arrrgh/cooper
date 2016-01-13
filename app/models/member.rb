@@ -4,5 +4,6 @@ class Member < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   has_many :orders
+  has_many :members_coop 
   has_many :coops, through: :members_coop
 end
