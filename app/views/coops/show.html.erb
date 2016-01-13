@@ -7,6 +7,7 @@
 
 <%= link_to 'Edit', edit_coop_path(@coop) %> |
 <%= link_to 'Back', coops_path %>
+<%= link_to 'Final dates for orders', coop_finalisings_path(@coop) %>
 <%= form_for(@coop) do |f| %>
   <%= f.hidden_field :member_id, :value =>current_member.id%>
   <div class="actions">

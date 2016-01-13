@@ -1,4 +1,4 @@
-<%= form_for(@finalising) do |f| %>
+<%= form_for [@finalising.coop, @finalising]  do |f| %>
   <% if @finalising.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@finalising.errors.count, "error") %> prohibited this finalising from being saved:</h2>

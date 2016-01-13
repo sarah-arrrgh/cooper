@@ -1,6 +1,7 @@
 class FinalisingsController < ApplicationController
+  before_action :set_coop
   before_action :set_finalising, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_member!, only: [:edit, :update, :destroy]
+  before_action :authenticate_member!, only: [:edit, :update, :destroy]  
   before_action :check_rights, only: [:new, :edit, :update, :destroy]
 
   # GET /finalisings
@@ -16,7 +17,7 @@ class FinalisingsController < ApplicationController
 
   # GET /finalisings/new
   def new
-    @finalising = Finalising.new
+    @finalising = @coop.finalisings.new
   end
 
   # GET /finalisings/1/edit
@@ -30,7 +31,7 @@ class FinalisingsController < ApplicationController
 
     respond_to do |format|
       if @finalising.save
-        format.html { redirect_to @finalising, notice: 'Finalising was successfully created.' }
+        format.html { redirect_to coop_finalisings_path(@coop), notice: 'Finalising  date was successfully created.' }
         format.json { render :show, status: :created, location: @finalising }
       else
         format.html { render :new }
@@ -44,7 +45,7 @@ class FinalisingsController < ApplicationController
   def update
     respond_to do |format|
       if @finalising.update(finalising_params)
-        format.html { redirect_to @finalising, notice: 'Finalising was successfully updated.' }
+        format.html { redirect_to coop_finalisings_path(@coop), notice: 'Finalising date  was successfully updated.' }
         format.json { render :show, status: :ok, location: @finalising }
       else
         format.html { render :edit }
@@ -58,7 +59,7 @@ class FinalisingsController < ApplicationController
   def destroy
     @finalising.destroy
     respond_to do |format|
-      format.html { redirect_to finalisings_url, notice: 'Finalising was successfully destroyed.' }
+      format.html { redirect_to coop_finalisings_path(@coop), notice: 'Finalising date  was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -67,6 +68,10 @@ class FinalisingsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_finalising
       @finalising = Finalising.find(params[:id])
+    end
+
+    def set_coop
+      @coop = Coop.find(params[:coop_id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
